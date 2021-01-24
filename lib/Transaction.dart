@@ -1,7 +1,8 @@
 class Transaction {
   String content;
   double amount;
-  Transaction({this.content, this.amount});
+  DateTime createdDate;
+  Transaction({this.content, this.amount, this.createdDate});
   @override
   String toString() {
     // TODO: implement toString
