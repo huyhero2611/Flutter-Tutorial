@@ -85,18 +85,24 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
                             ),
                             onPressed: () {
                               print("press save");
+                              setState(() {
+                                this._insertTransaction();
+                              });
+                              Navigator.of(context).pop();
                             },
                             color: Colors.green,
                           )),
                       Padding(padding: EdgeInsets.only(left: 10)),
                       Expanded(
                           child: RaisedButton(
-                            child: Text("Cancel",
+                              color: Colors.red,
+                              child: Text("Cancel",
                                 style: TextStyle(color: Colors.white, fontSize: 18)),
                             onPressed: () {
                               print("Press cancel");
+                              Navigator.of(context).pop();
                             },
-                            color: Colors.red,
+
                           ))
                     ],
                   ),
@@ -112,14 +118,12 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Transaction maneger"),
+        title: Text("Transaction manager"),
         actions: <Widget>[
           IconButton(
               icon: Icon(Icons.add),
               onPressed: () {
-                setState(() {
-                  this._insertTransaction();
-                });
+                this._buttonShowModalSheet();
               })
         ],
       ),
@@ -127,10 +131,9 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         tooltip: "Add transaction",
         child: Icon(Icons.add),
         onPressed: () {
-          setState(() {
-            this._insertTransaction();
-          });
+          this._buttonShowModalSheet();
         },
+        backgroundColor: Theme.of(context).primaryColor,
       ),
       key: _scaffoldKey,
       body: SafeArea(
@@ -150,7 +153,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
                       style: TextStyle(fontSize: 20),
                     ),
                     textColor: Colors.white,
-                    color: Colors.pink,
+                    color: Colors.green,
                     onPressed: () {
                       this._buttonShowModalSheet();
                       _scaffoldKey.currentState.showSnackBar(

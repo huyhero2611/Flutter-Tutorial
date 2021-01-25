@@ -4,6 +4,9 @@ import './MyApp.dart';
 void main() {
   runApp(MaterialApp(
     title: "Transaction app",
-    home: MyApp()
+    home: MyApp(),
+    theme: ThemeData(
+      primaryColor: Colors.blue,
+    ),
   ));
 }
